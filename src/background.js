@@ -60,10 +60,11 @@ class Background {
 		// Update clouds
 		for (var i = 0; i < this.clouds.length; i++) {
 			this.clouds[i].update();
-			if (this.clouds[i].position.x > this.game.ctx.canvas.width) {
+			var lastCloud = this.clouds[this.clouds.length - 1];
+			if ((this.clouds[i].position.x + lastCloud.texture.image.width) > this.game.ctx.canvas.width) {
 				// Cloud is off screen
 				this.clouds.reverse();
-				this.clouds.pop();
+				(this.clouds.pop()).destroy();
 				this.clouds.reverse();
 			}
 		}

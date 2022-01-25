@@ -3,6 +3,8 @@ var ctx = canvas.getContext("2d");
 
 var game = new Game(ctx);
 
+//game.start();
+
 window.setInterval(() => {
 	game.update();
 }, 1000/60);
