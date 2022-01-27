@@ -18,8 +18,8 @@ class ImageTexture {
 	drawTexture(x, y) {
 		this.game.ctx.drawImage(this.image, x, y);
 	}
-    draw(rect){
-        this.game.ctx.drawImage(this.image, rect.x, rect.y);
+    draw(x, y){
+        this.game.ctx.drawImage(this.image, x, y);
     }
 }
 
@@ -37,7 +37,7 @@ class Entity {
 		this.game = game;
 		this.texture = new ImageTexture(this.game);
 		this.game.entityCount += 1;
-		this.rect = new Rect(this.game);
+		//this.rect = new Rect();
 	}
 	update() {
 

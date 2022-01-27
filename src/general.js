@@ -109,6 +109,8 @@ class ClockLAG {
 }
 
 // The most useful Class in existence
+
+// We dont need this right now
 class Rect {
     constructor(x, y, w, h){
         this.x = x;

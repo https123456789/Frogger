@@ -13,6 +13,7 @@ class Game {
 		this.mapLoader = new MapLoader(this);
 		this.player = new Player(this);
 		this.clock = new Clock(this, (1000 / 60));
+		this.keyboard = new KeyboardInput(this);
 		// Inits
 		this.initCanvas();
 	}
@@ -45,6 +46,31 @@ class Game {
 			for (var q = 0; q < row.tiles.length; q++) {
 				row.tiles[q].update();
 				//console.log(row.tiles[q].position);
+			}
+		}
+		// Handle key KeyboardInput
+		var k = Object.keys(this.keyboard.keys);
+		for (var i = 0; i < k.length; i++) {
+			if (this.keyboard.keys[k[i]]) {
+				switch (k[i]) {
+					case "a":
+					case "A":
+						this.player.position.x -= this.player.speed;
+						break;
+					case "d":
+					case "D":
+						this.player.position.x += this.player.speed;
+						break;
+					case "w":
+					case "W":
+						this.player.position.y -= this.player.speed;
+						break;
+					case "s":
+					case "S":
+						this.player.position.y += this.player.speed;
+						break;
+				}
+				this.keyboard.clearKey(k[i]);
 			}
 		}
 		// Update player

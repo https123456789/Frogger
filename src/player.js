@@ -6,16 +6,16 @@ class Player extends Entity {
 		this.imagesrc = "res/Frog.png";
         this.texture = new ImageTexture(game);
         this.texture.loadTexture(this.imagesrc);
-
-        this.rect = new Rect(0, 0, 10, 10);
-        console.log(this.game.tileRows[0]);
-        // this.rect.setCenter();
-
+		this.position = {
+			x: 240,
+			y: 280
+		};
+		this.speed = 20;
     }
     update(){
         this.render();
     }
     render(){
-        this.texture.draw(this.rect);        
+        this.texture.draw(this.position.x, this.position.y);        
     }
 }
