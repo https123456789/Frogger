@@ -52,4 +52,14 @@ class Player extends Entity {
 		}
 		this.position.x += amt;
 	}
+	moveX(amt, options) {
+		if ((this.position.x + amt) > (this.game.ctx.canvas.width - this.width)) {
+			if (options.dieOnFail) {
+				// To Do: Kill player
+			} else {
+				return;
+			}
+		}
+		this.position.x += amt;
+	}
 }

@@ -60,6 +60,36 @@ class WaterTile extends ImageTextureTile {
 	}
 }
 
+class WaterSpawnerTile extends WaterTile {
+	constructor(game, positionVector, spawnerType, xmovementVelocity) {
+		super(game, positionVector);
+		this.spawner = {
+			xmovementVelocity: xmovementVelocity,
+			type: spawnerType
+		};
+		this.spawnCountDown = 20;
+	}
+	update() {
+		if (this.spawnCountDown < 1) {
+			var newLog = new Log(
+				this.game,
+				this.spawner.xmovementVelocity,
+				this.game.ctx.canvas.width,
+				{
+					x: this.position.x,
+					y: this.position.y
+				}
+			);
+			
+			this.game.logs.push(newLog);
+			this.spawnCountDown = 20;
+			return;
+		}
+		super.update();
+		this.spawnCountDown -= 1;
+	}
+}
+
 class UnknownTypeTile extends ImageTextureTile {
 	constructor(game, positionVector) {
 		super(game, positionVector, "res/Unknown.png");

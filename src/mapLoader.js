@@ -17,16 +17,6 @@ class MapLoader {
 		this.selected = true;
 	}
 	generateMap() {
-		/*
-		for (var y = 0; y < this.game.ctx.canvas.height; y+=20) {
-			var newRow = new TileContainer(this.game);
-			for (var x = 0; x < this.game.ctx.canvas.width; x+=20) {
-				var newTile = new EmptyTile(this.game, new Vec(x, y));
-				newRow.addTile(newTile);
-			}
-			this.game.tileRows.push(newRow);
-		}
-		*/
 		if (!window.map) {
 			return;
 		}
@@ -49,6 +39,9 @@ class MapLoader {
 						break;
 					case "Water":
 						var newTile = new WaterTile(this.game, tile.position);
+						break;
+					case "WaterSpawner":
+						var newTile = new WaterSpawnerTile(this.game, tile.position, tile.spawnerType, tile.spawnerAttributes.xmovementVelocity);
 						break;
 					default:
 						console.log("Unknow type '" + tile.type + "' defined at (" + tile.position.x + ", " + tile.position.y + ").");

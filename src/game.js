@@ -12,8 +12,9 @@ class Game {
 		this.tileRows = [];
 		this.mapLoader = new MapLoader(this);
 		this.player = new Player(this);
-		this.clock = new Clock(this, (1000 / 60));
+		this.clock = new Clock(this, 60);
 		this.keyboard = new KeyboardInput(this);
+		this.logs = [];
 		// Inits
 		this.initCanvas();
 	}
@@ -51,6 +52,10 @@ class Game {
 				row.tiles[q].update();
 				//console.log(row.tiles[q].position);
 			}
+		}
+		// Update logs
+		for (var i = 0; i < this.logs.length; i++) {
+			this.logs[i].update();
 		}
 		// Handle key KeyboardInput
 		var k = Object.keys(this.keyboard.keys);

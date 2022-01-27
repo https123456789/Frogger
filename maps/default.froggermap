@@ -1079,10 +1079,15 @@ window.map = {
 			{
 				tiles: [
 					{
-						type: "Water",
+						type: "WaterSpawner",
 						position: {
 							x: 0,
 							y: 160
+						},
+						isSpawner: true,
+						spawnerType: "Log",
+						spawnerAttributes: {
+							xmovementVelocity: 1
 						}
 					},
 					{
@@ -1251,6 +1256,11 @@ window.map = {
 						position: {
 							x: 480,
 							y: 160
+						},
+						isClearer: true,
+						clearerType: "Log",
+						clearerAttributes: {
+							clearOnMoveOff: true
 						}
 					}
 				]
@@ -1258,10 +1268,15 @@ window.map = {
 			{
 				tiles: [
 					{
-						type: "Water",
+						type: "WaterSpawner",
 						position: {
 							x: 0,
 							y: 140
+						},
+						isSpawner: true,
+						spawnerType: "Log",
+						spawnerAttributes: {
+							xmovementVelocity: 1
 						}
 					},
 					{
