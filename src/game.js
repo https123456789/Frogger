@@ -39,6 +39,10 @@ class Game {
 			console.log("Loading map.");
 			this.mapLoader.generateMap();
 		}
+		if (!this.keyboard.listening) {
+			console.log("Listening to keyboard input.");
+			this.keyboard.listen();
+		}
 		this.updateDebugInfo();
 		// Update tiles
 		for (var i = 0; i < this.tileRows.length; i++) {
@@ -52,22 +56,18 @@ class Game {
 		var k = Object.keys(this.keyboard.keys);
 		for (var i = 0; i < k.length; i++) {
 			if (this.keyboard.keys[k[i]]) {
-				switch (k[i]) {
-					case "a":
-					case "A":
-						this.player.position.x -= this.player.speed;
+				switch (k[i].toLowerCase()) {
+					case window.settings.keybindings.keyleft:
+						this.player.moveLeft();
 						break;
-					case "d":
-					case "D":
-						this.player.position.x += this.player.speed;
+					case window.settings.keybindings.keyright:
+						this.player.moveRight();
 						break;
-					case "w":
-					case "W":
-						this.player.position.y -= this.player.speed;
+					case window.settings.keybindings.keyup:
+						this.player.moveUp();
 						break;
-					case "s":
-					case "S":
-						this.player.position.y += this.player.speed;
+					case window.settings.keybindings.keydown:
+						this.player.moveDown();
 						break;
 				}
 				this.keyboard.clearKey(k[i]);

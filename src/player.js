@@ -10,6 +10,8 @@ class Player extends Entity {
 			x: 240,
 			y: 280
 		};
+		this.width = 20;
+		this.height = 20;
 		this.speed = 20;
     }
     update(){
@@ -18,4 +20,36 @@ class Player extends Entity {
     render(){
         this.texture.draw(this.position.x, this.position.y);        
     }
+	moveUp() {
+		// Bounds check
+		var amt = this.speed;
+		if ((this.position.y - amt) < 0) {
+			return;
+		}
+		this.position.y -= amt;
+	}
+	moveDown() {
+		// Bounds check
+		var amt = this.speed;
+		if ((this.position.y + amt) > (this.game.ctx.canvas.height - this.height)) {
+			return;
+		}
+		this.position.y += amt;
+	}
+	moveLeft() {
+		// Bounds check
+		var amt = this.speed;
+		if ((this.position.x - amt) < 0) {
+			return;
+		}
+		this.position.x -= amt;
+	}
+	moveRight() {
+		// Bounds check
+		var amt = this.speed;
+		if ((this.position.x + amt) > (this.game.ctx.canvas.width - this.width)) {
+			return;
+		}
+		this.position.x += amt;
+	}
 }
