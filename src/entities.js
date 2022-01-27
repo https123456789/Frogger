@@ -1,6 +1,6 @@
 // Entity Surface class
 
-class Texture {
+class ImageTexture {
 	constructor(game) {
 		this.game = game;
 		this.src = null;
@@ -15,6 +15,19 @@ class Texture {
 			self.imageHadLoaded = true;
 		}
 	}
+	drawTexture(x, y) {
+		this.game.ctx.drawImage(this.image, x, y);
+	}
+    draw(rect){
+        this.game.ctx.drawImage(this.image, rect.x, rect.y);
+    }
+}
+
+class SolidColorTexture {
+	constructor(game, color) {
+		this.game = game;
+		this.color = color;
+	}
 }
 
 // Base Entity class
@@ -22,8 +35,9 @@ class Texture {
 class Entity {
 	constructor(game) {
 		this.game = game;
-		this.texture = new Texture(this.game);
+		this.texture = new ImageTexture(this.game);
 		this.game.entityCount += 1;
+		this.rect = new Rect(this.game);
 	}
 	update() {
 
@@ -37,9 +51,10 @@ class Entity {
 class Car extends Entity {
 	constructor(game) {
 		super(game);
-        this.position = Vec(20, 30);
+        this.position = Vec(0, 0);
+        this.velocity = Vec3(0, 1, 2)
 	}
     update(){
-    
+        //this.position
     }
 }
