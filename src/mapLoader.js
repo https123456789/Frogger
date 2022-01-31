@@ -41,7 +41,7 @@ class MapLoader {
 						var newTile = new WaterTile(this.game, tile.position);
 						break;
 					case "WaterSpawner":
-						var newTile = new WaterSpawnerTile(this.game, tile.position, tile.spawnerType, tile.spawnerAttributes.xmovementVelocity);
+						var newTile = new WaterSpawnerTile(this.game, tile.position, tile.spawnerType, tile.spawnerAttributes.xmovementVelocity, tile.spawnerAttributes);
 						break;
 					default:
 						console.log("Unknow type '" + tile.type + "' defined at (" + tile.position.x + ", " + tile.position.y + ").");

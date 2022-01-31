@@ -32,15 +32,29 @@ class SolidColorTexture {
 
 // Base Entity class
 
-class Entity {
+class Entity extends EventTriggerable{
 	constructor(game) {
-		this.game = game;
+		super(game);
 		this.texture = new ImageTexture(this.game);
 		this.game.entityCount += 1;
+		this.position = {
+			x: 0,
+			y: 0
+		};
 		//this.rect = new Rect();
 	}
 	update() {
 
+	}
+	triggerEvent(eventName) {
+		switch (eventName) {
+			case "playerIsOn":
+				this.playerIsOn();
+				break;
+		}
+	}
+	playerIsOn() {
+		
 	}
 	destroy() {
 		this.game.entityCount -= 1;

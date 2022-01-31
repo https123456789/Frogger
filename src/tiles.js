@@ -1,8 +1,8 @@
 // Tiles
 
-class Tile {
+class Tile extends EventTriggerable {
 	constructor(game, positionVector, bgcolor = "rgb(200, 200, 200)") {
-		this.game = game;
+		super(game);
 		this.position = positionVector;
 		this.width = 20;
 		this.height = 20;
@@ -58,16 +58,21 @@ class WaterTile extends ImageTextureTile {
 	constructor(game, positionVector) {
 		super(game, positionVector, "res/Water.png");
 	}
+	playerIsOn() {
+		//this.game.player.die();
+		super.playerIsOn();
+	}
 }
 
 class WaterSpawnerTile extends WaterTile {
-	constructor(game, positionVector, spawnerType, xmovementVelocity) {
+	constructor(game, positionVector, spawnerType, xmovementVelocity, options) {
 		super(game, positionVector);
 		this.spawner = {
 			xmovementVelocity: xmovementVelocity,
 			type: spawnerType
 		};
 		this.spawnCountDown = 20;
+		this.options = options;
 	}
 	update() {
 		if (this.spawnCountDown < 1) {
@@ -82,7 +87,11 @@ class WaterSpawnerTile extends WaterTile {
 			);
 			
 			this.game.logs.push(newLog);
-			this.spawnCountDown = 20;
+			if (this.options.randomOffset && this.options.randomOffsetModifier) {
+				this.spawnCountDown = 20 + Math.floor((this.options.randomOffsetModifier * Math.random()));
+			} else {
+				this.spawnCountDown = 20;
+			}
 			return;
 		}
 		super.update();

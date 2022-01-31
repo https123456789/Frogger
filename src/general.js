@@ -23,6 +23,22 @@ class Vec3 extends Vec {
     }
 }
 
+class EventTriggerable {
+	constructor(game) {
+		this.game = game;
+	}
+	triggerEvent(eventName) {
+		switch (eventName) {
+			case "playerIsOn":
+				this.playerIsOn();
+				break;
+		}
+	}
+	playerIsOn() {
+		
+	}
+}
+
 class Clock {
 	constructor(game, fps){
         this.game = game;
@@ -33,18 +49,21 @@ class Clock {
         this.lastUpdate = 0;
         this.speed = 1; // This is the speed factor for slow-mo and speed changing effects 
         
-        window.setInterval(() => {
+        this.runner = window.setInterval(() => {
 			this.update();
-		}, 1);
+		}, this.fps);
         
 	}
 	update() {
 		this.ticks += 1;
-        if (this.ticks - this.lastUpdate > this.delta*1000*this.speed){
-            this.game.update();
-            this.lastUpdate = this.ticks
-        }
+        this.game.update();
+        this.lastUpdate = this.ticks;
 	}
+    changeSpeed(spd){
+        this.speed = spd
+        clearInterval(this.runner)
+        this.runner = setInterval(this.update, 1000/(this.fps*spd))
+    }
 }
 
 class ClockHTTP {

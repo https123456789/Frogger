@@ -14,9 +14,23 @@ class Player extends Entity {
 		this.height = 20;
 		this.speed = 20;
     }
-    update(){
+    update() {
+		// Trigger playerIsOn event for tile player is on
+		for (var i = 0; i < this.game.tileRows.length; i++) {
+			var row = this.game.tileRows[i];
+			for (var q = 0; q < row.tiles.length; q++) {
+				var tile = row.tiles[q];
+				if (tile.position.y == this.position.y && tile.position.x == this.position.y) {
+					//console.log(tile.position);
+					row.tiles[q].triggerEvent("playerIsOn");
+				}
+			}
+		}
         this.render();
     }
+	die() {
+		window.location.reload();
+	}
     render(){
         this.texture.draw(this.position.x, this.position.y);        
     }
@@ -55,7 +69,7 @@ class Player extends Entity {
 	moveX(amt, options) {
 		if ((this.position.x + amt) > (this.game.ctx.canvas.width - this.width)) {
 			if (options.dieOnFail) {
-				// To Do: Kill player
+				this.die();
 			} else {
 				return;
 			}

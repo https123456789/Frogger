@@ -24,16 +24,16 @@ class Log extends Entity {
 		if (this.movementDelay < 1) {
 			// Move logs
 			this.position.x += this.xmovementVelocity * this.speed;
+			this.draw();
 			// Move player
 			if (this.game.player.position.y == this.position.y) {
 				if (this.game.player.position.x - this.width == this.position.x) {
 					this.game.player.moveX(this.xmovementVelocity * this.speed, {
-
+						dieOnFail: true
 					});
 				}
 			}
 			this.movementDelay = 10;
-			this.draw();
 			return;
 		}
 		this.draw();
