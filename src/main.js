@@ -1,20 +1,15 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+window.onload = () => {
+	var WIDTH = 500;
+	var HEIGHT = 300;
+	Crafty.init(WIDTH, HEIGHT);
 
-// Defaults
-window.settings = {
-	keybindings: {
-		keyup: "w",
-		keydown: "s",
-		keyleft: "a",
-		keyright: "d"
-	}
-};
-
-var game = new Game(ctx);
-
-/*
-window.setInterval(() => {
-    game.clock.tick();
-}, 1000 / 60);
-*/
+	var player = Crafty.e("2D, Color, Canvas, Fourway");
+	player.attr({
+		x: 0,
+		y: 0,
+		w: 20,
+		h: 20
+	});
+	player.color("rgb(0, 0, 255)");
+	player.fourway(20);
+}
